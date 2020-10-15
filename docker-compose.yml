@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+    url_shortener:
+        image: adarah/url_shortener:0.0.3
+        links:
+            - "url_shortener_db:db"
+        environment:
+            DB_USER: ${URL_SHORTENER_DB_USER}
+            DB_PASSWORD: ${URL_SHORTENER_DB_PASSWORD}
+            FLYWAY_USER: ${URL_SHORTENER_DB_USER}
+            FLYWAY_PASSWORD: ${URL_SHORTENER_DB_PASSWORD}
+            SECRET_KEY: ${SECRET_KEY}
+        ports:
+            - "8080:8080"
+        depends_on:
+            - url_shortener_db
+
+    url_shortener_db:
+        image: postgres:12.4
+        environment:
+            POSTGRES_DB: url_shortener
+            POSTGRES_USER: ${URL_SHORTENER_DB_USER}
+            POSTGRES_PASSWORD: ${URL_SHORTENER_DB_PASSWORD}

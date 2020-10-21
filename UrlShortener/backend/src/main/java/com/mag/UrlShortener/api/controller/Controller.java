@@ -29,6 +29,7 @@ public class Controller {
 
   @GetMapping("/{urlAlias}")
   @ResponseStatus(HttpStatus.MOVED_PERMANENTLY)
+  @CrossOrigin(origins = "http://localhost:3000", exposedHeaders = "Location")
   public RedirectView redirect(
       @PathVariable(value = "urlAlias") String urlAlias, HttpServletRequest request) {
     String url = redirectService.findByAlias(urlAlias);

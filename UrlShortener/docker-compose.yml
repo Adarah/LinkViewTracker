@@ -5,6 +5,7 @@ services:
         links:
             - "url_shortener_db:db"
         environment:
+            DB_HOSTNAME: ${URL_SHORTENER_DB_HOSTNAME}
             DB_USER: ${URL_SHORTENER_DB_USER}
             DB_PASSWORD: ${URL_SHORTENER_DB_PASSWORD}
             FLYWAY_USER: ${URL_SHORTENER_DB_USER}
